@@ -1,0 +1,558 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Farhan's Ultimate World</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #090d1c;
+    color: white;
+    text-align: center;
+    transition: 0.3s;
+}
+
+body.light {
+    background: #edf2ff;
+    color: #18213d;
+}
+
+nav {
+    background: #111a30;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+body.light nav {
+    background: #dce5ff;
+}
+
+nav a {
+    color: #65e6ff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+body.light nav a {
+    color: #394caa;
+}
+
+.hero {
+    padding: 65px 15px;
+    background: linear-gradient(135deg,#14234a,#54216e);
+}
+
+.hero h1 {
+    font-size: 42px;
+    color: #5ce6ff;
+}
+
+.hero p {
+    color: #e0ddff;
+    font-size: 18px;
+}
+
+button {
+    cursor: pointer;
+}
+
+.action {
+    border: none;
+    border-radius: 25px;
+    padding: 13px 22px;
+    margin: 8px;
+    background: linear-gradient(90deg,#00c6ff,#a044ff);
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.action:hover {
+    box-shadow: 0 0 18px #7655ff;
+}
+
+section {
+    padding: 45px 15px;
+}
+
+.heading {
+    color: #5ce6ff;
+    font-size: 30px;
+}
+
+body.light .heading {
+    color: #394caa;
+}
+
+.panel {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 25px;
+    border-radius: 18px;
+    background: #172442;
+    border: 1px solid #435b91;
+}
+
+body.light .panel {
+    background: white;
+    border-color: #bdc9ea;
+}
+
+.big-time {
+    font-size: 42px;
+    color: #65e6ff;
+    font-weight: bold;
+}
+
+#date {
+    color: #d8d9ff;
+}
+
+body.light #date {
+    color: #394caa;
+}
+
+#quote {
+    color: #e0c1ff;
+    font-size: 19px;
+    line-height: 1.6;
+}
+
+body.light #quote {
+    color: #643b9a;
+}
+
+input {
+    padding: 12px;
+    width: 150px;
+    max-width: 100%;
+    border: 1px solid #7183c9;
+    border-radius: 10px;
+    font-size: 17px;
+    text-align: center;
+    margin: 8px;
+}
+
+#guessStatus, #quizResult, #status {
+    color: #65e6ff;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.quiz-question {
+    text-align: left;
+    margin: 20px auto;
+    max-width: 340px;
+    line-height: 2;
+}
+
+.quiz-question label {
+    display: block;
+    cursor: pointer;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 18px;
+}
+
+.card {
+    background: #192744;
+    border: 1px solid #465d90;
+    border-radius: 15px;
+    padding: 25px;
+    width: 230px;
+}
+
+body.light .card {
+    background: white;
+    border-color: #bdc9ea;
+}
+
+.card h3 {
+    color: #c69aff;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 9px;
+    max-width: 300px;
+    margin: 20px auto;
+}
+
+.cell {
+    width: 100%;
+    aspect-ratio: 1;
+    border: 2px solid #5865a8;
+    border-radius: 12px;
+    background: #202d55;
+    color: #55eaff;
+    font-size: 45px;
+    font-weight: bold;
+}
+
+footer {
+    background: #060a15;
+    padding: 25px;
+    color: #aab6d0;
+}
+
+body.light footer {
+    background: #dce5ff;
+    color: #394caa;
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#clock">Clock</a>
+    <a href="#games">Games</a>
+    <a href="#quiz">Quiz</a>
+    <button class="action" onclick="toggleTheme()">☀️ / 🌙 Theme</button>
+</nav>
+
+<div class="hero" id="home">
+    <h1>WELCOME TO FARHAN'S WORLD! 🚀</h1>
+    <p>My personal interactive website.</p>
+    <p>Learn • Play • Explore • Create</p>
+</div>
+
+<section id="clock">
+    <h2 class="heading">⏰ LIVE CLOCK</h2>
+
+    <div class="panel">
+        <div class="big-time" id="time">Loading...</div>
+        <h3 id="date">Loading date...</h3>
+        <p>Your computer's local time</p>
+    </div>
+</section>
+
+<section>
+    <h2 class="heading">💡 MOTIVATION MACHINE</h2>
+
+    <div class="panel">
+        <p id="quote">Believe in yourself and keep learning!</p>
+        <button class="action" onclick="newQuote()">
+            New Motivation ✨
+        </button>
+    </div>
+</section>
+
+<section id="games">
+    <h2 class="heading">🔢 NUMBER GUESSING GAME</h2>
+
+    <div class="panel">
+        <p>I'm thinking of a number between 1 and 20.</p>
+        <p>Can you guess it?</p>
+
+        <input type="number" id="guessInput"
+               min="1" max="20" placeholder="Your guess">
+
+        <br>
+
+        <button class="action" onclick="checkGuess()">
+            Check Number
+        </button>
+
+        <button class="action" onclick="newNumber()">
+            Restart Game ↻
+        </button>
+
+        <p id="guessStatus">Make your first guess!</p>
+        <p id="attempts">Attempts: 0</p>
+    </div>
+</section>
+
+<section id="quiz">
+    <h2 class="heading">🧠 KNOWLEDGE QUIZ</h2>
+
+    <div class="panel">
+
+        <div class="quiz-question">
+            <h3>1. Which planet is known as the Red Planet?</h3>
+            <label><input type="radio" name="q1" value="0"> Earth</label>
+            <label><input type="radio" name="q1" value="1"> Mars</label>
+            <label><input type="radio" name="q1" value="0"> Venus</label>
+        </div>
+
+        <div class="quiz-question">
+            <h3>2. What does HTML help us create?</h3>
+            <label><input type="radio" name="q2" value="1"> Web pages</label>
+            <label><input type="radio" name="q2" value="0"> Cars</label>
+            <label><input type="radio" name="q2" value="0"> Food</label>
+        </div>
+
+        <div class="quiz-question">
+            <h3>3. How many sides does a triangle have?</h3>
+            <label><input type="radio" name="q3" value="0"> Four</label>
+            <label><input type="radio" name="q3" value="0"> Five</label>
+            <label><input type="radio" name="q3" value="1"> Three</label>
+        </div>
+
+        <button class="action" onclick="checkQuiz()">
+            Submit My Answers
+        </button>
+
+        <p id="quizResult">Good luck! 🎯</p>
+    </div>
+</section>
+
+<section>
+    <h2 class="heading">🎮 TIC-TAC-TOE</h2>
+
+    <div class="panel">
+        <p>Player X vs Player O</p>
+
+        <div class="board">
+            <button class="cell" onclick="play(0)"></button>
+            <button class="cell" onclick="play(1)"></button>
+            <button class="cell" onclick="play(2)"></button>
+            <button class="cell" onclick="play(3)"></button>
+            <button class="cell" onclick="play(4)"></button>
+            <button class="cell" onclick="play(5)"></button>
+            <button class="cell" onclick="play(6)"></button>
+            <button class="cell" onclick="play(7)"></button>
+            <button class="cell" onclick="play(8)"></button>
+        </div>
+
+        <p id="status">Player X's turn</p>
+
+        <button class="action" onclick="resetGame()">
+            New Game ↻
+        </button>
+    </div>
+</section>
+
+<section>
+    <h2 class="heading">ABOUT THE CREATOR 👋</h2>
+    <div class="cards">
+        <div class="card">
+            <h3>💻 My Goal</h3>
+            <p>Become a great programmer.</p>
+        </div>
+
+        <div class="card">
+            <h3>🌍 My Interests</h3>
+            <p>Technology, languages and gaming.</p>
+        </div>
+
+        <div class="card">
+            <h3>🚀 My Dream</h3>
+            <p>Build amazing things.</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <h3>Made with ❤️ by Farhan</h3>
+    <p>Dream Big. Learn More. Build Your Future.</p>
+    © 2026 Farhan's World
+</footer>
+
+<script>
+
+// LIVE CLOCK
+function updateClock() {
+    const now = new Date();
+
+    document.getElementById("time").textContent =
+        now.toLocaleTimeString();
+
+    document.getElementById("date").textContent =
+        now.toLocaleDateString(undefined, {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+        });
+}
+
+updateClock();
+setInterval(updateClock, 1000);
+
+
+// DARK AND LIGHT THEME
+function toggleTheme() {
+    document.body.classList.toggle("light");
+}
+
+
+// MOTIVATION GENERATOR
+const quotes = [
+    "Believe in yourself. You can do amazing things!",
+    "Every expert was once a beginner.",
+    "Never stop learning new things.",
+    "Small steps lead to big achievements.",
+    "Your future starts with what you learn today.",
+    "Make today a little better than yesterday."
+];
+
+function newQuote() {
+    const random = Math.floor(Math.random() * quotes.length);
+    document.getElementById("quote").textContent = quotes[random];
+}
+
+
+// NUMBER GUESSING GAME
+let secretNumber = Math.floor(Math.random() * 20) + 1;
+let tries = 0;
+let guessFinished = false;
+
+function checkGuess() {
+    const input = document.getElementById("guessInput");
+    const guess = Number(input.value);
+
+    if (guessFinished) {
+        document.getElementById("guessStatus").textContent =
+            "Start a new game first!";
+        return;
+    }
+
+    if (!input.value || guess < 1 || guess > 20 ||
+        !Number.isInteger(guess)) {
+        document.getElementById("guessStatus").textContent =
+            "Enter a whole number from 1 to 20!";
+        return;
+    }
+
+    tries++;
+
+    if (guess === secretNumber) {
+        document.getElementById("guessStatus").textContent =
+            "🎉 CORRECT! You found the number!";
+        guessFinished = true;
+    } else if (guess < secretNumber) {
+        document.getElementById("guessStatus").textContent =
+            "Too low! Try a bigger number.";
+    } else {
+        document.getElementById("guessStatus").textContent =
+            "Too high! Try a smaller number.";
+    }
+
+    document.getElementById("attempts").textContent =
+        "Attempts: " + tries;
+}
+
+function newNumber() {
+    secretNumber = Math.floor(Math.random() * 20) + 1;
+    tries = 0;
+    guessFinished = false;
+
+    document.getElementById("guessInput").value = "";
+    document.getElementById("guessStatus").textContent =
+        "New number chosen. Let's play!";
+    document.getElementById("attempts").textContent =
+        "Attempts: 0";
+}
+
+
+// KNOWLEDGE QUIZ
+function checkQuiz() {
+    let score = 0;
+    let answered = 0;
+
+    for (let i = 1; i <= 3; i++) {
+        const answer = document.querySelector(
+            'input[name="q' + i + '"]:checked'
+        );
+
+        if (answer) {
+            answered++;
+            score += Number(answer.value);
+        }
+    }
+
+    const result = document.getElementById("quizResult");
+
+    if (answered < 3) {
+        result.textContent = "Please answer all 3 questions!";
+        return;
+    }
+
+    result.textContent =
+        "You scored " + score + " out of 3! " +
+        (score === 3 ? "Perfect score! 🏆" : "Great effort! Keep learning!");
+}
+
+
+// TIC-TAC-TOE
+let currentPlayer = "X";
+let board = ["","","","","","","","",""];
+let gameActive = true;
+
+const cells = document.querySelectorAll(".cell");
+
+const winningPositions = [
+    [0,1,2],
+    [3,4,5],
+    [6,7,8],
+    [0,3,6],
+    [1,4,7],
+    [2,5,8],
+    [0,4,8],
+    [2,4,6]
+];
+
+function play(position) {
+    if (!gameActive || board[position] !== "") return;
+
+    board[position] = currentPlayer;
+    cells[position].textContent = currentPlayer;
+
+    for (let combo of winningPositions) {
+        if (combo.every(i => board[i] === currentPlayer)) {
+            document.getElementById("status").textContent =
+                "🏆 Player " + currentPlayer + " WINS!";
+            gameActive = false;
+            return;
+        }
+    }
+
+    if (board.every(cell => cell !== "")) {
+        document.getElementById("status").textContent =
+            "It's a draw! 🤝";
+        gameActive = false;
+        return;
+    }
+
+    currentPlayer = currentPlayer === "X" ? "O" : "X";
+
+    document.getElementById("status").textContent =
+        "Player " + currentPlayer + "'s turn";
+}
+
+function resetGame() {
+    board = ["","","","","","","","",""];
+    currentPlayer = "X";
+    gameActive = true;
+
+    cells.forEach(cell => cell.textContent = "");
+
+    document.getElementById("status").textContent =
+        "Player X's turn";
+}
+
+</script>
+
+</body>
+</html>
