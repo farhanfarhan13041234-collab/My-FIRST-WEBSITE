@@ -3,555 +3,737 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Farhan's Ultimate World</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MRI World | Medical MRI Machine</title>
 
 <style>
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
     scroll-behavior: smooth;
 }
 
 body {
-    margin: 0;
     font-family: Arial, sans-serif;
-    background: #090d1c;
+    background: #f3f7fc;
+    color: #1d2939;
+    line-height: 1.7;
+}
+
+header {
+    background: #071d38;
     color: white;
-    text-align: center;
-    transition: 0.3s;
-}
-
-body.light {
-    background: #edf2ff;
-    color: #18213d;
-}
-
-nav {
-    background: #111a30;
-    padding: 20px;
+    padding: 22px 7%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: 15px;
 }
 
-body.light nav {
-    background: #dce5ff;
+.logo {
+    font-size: 26px;
+    font-weight: bold;
+    color: #55d6ff;
 }
 
 nav a {
-    color: #65e6ff;
+    color: white;
     text-decoration: none;
-    font-weight: bold;
+    margin: 8px;
+    font-size: 14px;
 }
 
-body.light nav a {
-    color: #394caa;
+nav a:hover {
+    color: #55d6ff;
 }
 
 .hero {
-    padding: 65px 15px;
-    background: linear-gradient(135deg,#14234a,#54216e);
+    min-height: 430px;
+    background: linear-gradient(120deg, #071d38, #126b9b);
+    color: white;
+    padding: 90px 8%;
+    text-align: center;
 }
 
 .hero h1 {
-    font-size: 42px;
-    color: #5ce6ff;
+    font-size: 46px;
+    margin-bottom: 20px;
 }
 
 .hero p {
-    color: #e0ddff;
+    max-width: 750px;
+    margin: auto;
     font-size: 18px;
 }
 
-button {
-    cursor: pointer;
-}
-
-.action {
-    border: none;
-    border-radius: 25px;
-    padding: 13px 22px;
-    margin: 8px;
-    background: linear-gradient(90deg,#00c6ff,#a044ff);
-    color: white;
+.hero a {
+    display: inline-block;
+    background: #55d6ff;
+    color: #071d38;
+    padding: 13px 27px;
+    margin-top: 28px;
+    text-decoration: none;
+    border-radius: 7px;
     font-weight: bold;
-    font-size: 15px;
-}
-
-.action:hover {
-    box-shadow: 0 0 18px #7655ff;
 }
 
 section {
-    padding: 45px 15px;
+    padding: 65px 8%;
 }
 
-.heading {
-    color: #5ce6ff;
-    font-size: 30px;
-}
-
-body.light .heading {
-    color: #394caa;
-}
-
-.panel {
-    max-width: 500px;
-    margin: 20px auto;
-    padding: 25px;
-    border-radius: 18px;
-    background: #172442;
-    border: 1px solid #435b91;
-}
-
-body.light .panel {
-    background: white;
-    border-color: #bdc9ea;
-}
-
-.big-time {
-    font-size: 42px;
-    color: #65e6ff;
-    font-weight: bold;
-}
-
-#date {
-    color: #d8d9ff;
-}
-
-body.light #date {
-    color: #394caa;
-}
-
-#quote {
-    color: #e0c1ff;
-    font-size: 19px;
-    line-height: 1.6;
-}
-
-body.light #quote {
-    color: #643b9a;
-}
-
-input {
-    padding: 12px;
-    width: 150px;
-    max-width: 100%;
-    border: 1px solid #7183c9;
-    border-radius: 10px;
-    font-size: 17px;
+.section-title {
     text-align: center;
-    margin: 8px;
+    font-size: 32px;
+    color: #075985;
+    margin-bottom: 30px;
 }
 
-#guessStatus, #quizResult, #status {
-    color: #65e6ff;
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.quiz-question {
-    text-align: left;
-    margin: 20px auto;
-    max-width: 340px;
-    line-height: 2;
-}
-
-.quiz-question label {
-    display: block;
-    cursor: pointer;
+.intro {
+    max-width: 850px;
+    margin: auto;
+    text-align: center;
 }
 
 .cards {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 18px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 22px;
+    margin-top: 30px;
 }
 
 .card {
-    background: #192744;
-    border: 1px solid #465d90;
-    border-radius: 15px;
-    padding: 25px;
-    width: 230px;
-}
-
-body.light .card {
     background: white;
-    border-color: #bdc9ea;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 15px #00000010;
+    border-top: 4px solid #0891b2;
 }
 
 .card h3 {
-    color: #c69aff;
+    color: #075985;
+    margin-bottom: 10px;
 }
 
-.board {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 9px;
-    max-width: 300px;
-    margin: 20px auto;
+.card .emoji {
+    font-size: 32px;
 }
 
-.cell {
-    width: 100%;
-    aspect-ratio: 1;
-    border: 2px solid #5865a8;
+.dark {
+    background: #e3f0fa;
+}
+
+ul {
+    padding-left: 22px;
+}
+
+.info {
+    background: #dff5ff;
+    border-left: 5px solid #0891b2;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 6px;
+}
+
+.warning {
+    background: #fff1db;
+    border-left: 5px solid #e69a22;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 6px;
+}
+
+.steps {
+    max-width: 850px;
+    margin: auto;
+}
+
+.step {
+    background: white;
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 9px;
+    border-left: 5px solid #0891b2;
+}
+
+.quiz {
+    max-width: 650px;
+    background: white;
+    padding: 25px;
+    margin: auto;
     border-radius: 12px;
-    background: #202d55;
-    color: #55eaff;
-    font-size: 45px;
+}
+
+.quiz button {
+    display: block;
+    width: 100%;
+    padding: 13px;
+    margin: 10px 0;
+    border: 1px solid #b9c7d6;
+    border-radius: 7px;
+    cursor: pointer;
+    background: #f5f9ff;
+    text-align: left;
+    font-size: 15px;
+}
+
+.quiz button:hover {
+    background: #dff5ff;
+}
+
+#result {
     font-weight: bold;
+    margin-top: 15px;
 }
 
 footer {
-    background: #060a15;
-    padding: 25px;
-    color: #aab6d0;
+    background: #071d38;
+    color: white;
+    padding: 30px;
+    text-align: center;
 }
 
-body.light footer {
-    background: #dce5ff;
-    color: #394caa;
+@media(max-width:600px) {
+    .hero h1 {font-size: 32px;}
+    header {justify-content: center; gap: 12px;}
+    nav {text-align: center;}
 }
-
 </style>
 </head>
 
 <body>
 
-<nav>
-    <a href="#home">Home</a>
-    <a href="#clock">Clock</a>
-    <a href="#games">Games</a>
-    <a href="#quiz">Quiz</a>
-    <button class="action" onclick="toggleTheme()">☀️ / 🌙 Theme</button>
-</nav>
+<header>
+    <div class="logo">MRI WORLD</div>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#parts">Parts</a>
+        <a href="#manufacturing">Manufacturing</a>
+        <a href="#working">Working</a>
+        <a href="#safety">Safety</a>
+        <a href="#quiz">Quiz</a>
+    </nav>
+</header>
 
 <div class="hero" id="home">
-    <h1>WELCOME TO FARHAN'S WORLD! 🚀</h1>
-    <p>My personal interactive website.</p>
-    <p>Learn • Play • Explore • Create</p>
+    <h1>Explore the World of MRI Machines</h1>
+    <p>
+        Discover the science, engineering, components and medical
+        applications of Magnetic Resonance Imaging technology.
+    </p>
+    <a href="#about">Start Exploring</a>
 </div>
 
-<section id="clock">
-    <h2 class="heading">⏰ LIVE CLOCK</h2>
-
-    <div class="panel">
-        <div class="big-time" id="time">Loading...</div>
-        <h3 id="date">Loading date...</h3>
-        <p>Your computer's local time</p>
+<section id="about">
+    <h2 class="section-title">What Is an MRI Machine?</h2>
+    <div class="intro">
+        <p>
+            MRI stands for Magnetic Resonance Imaging. It is a medical
+            imaging technology that uses a strong magnetic field,
+            radio waves and computer processing to create detailed
+            pictures of the inside of the human body.
+        </p>
+        <p>
+            Doctors use MRI scans to examine the brain, spine,
+            muscles, joints, organs and other body structures.
+        </p>
+        <div class="info">
+            <strong>Interesting fact:</strong> MRI does not use
+            ionising radiation like X-rays and CT scans.
+        </div>
     </div>
 </section>
 
-<section>
-    <h2 class="heading">💡 MOTIVATION MACHINE</h2>
+<section class="dark" id="parts">
+    <h2 class="section-title">Main Parts of an MRI Machine</h2>
 
-    <div class="panel">
-        <p id="quote">Believe in yourself and keep learning!</p>
-        <button class="action" onclick="newQuote()">
-            New Motivation ✨
-        </button>
+    <div class="cards">
+
+        <div class="card">
+            <div class="emoji">🧲</div>
+            <h3>1. Main Magnet</h3>
+            <p>
+                Produces the powerful, stable magnetic field needed
+                for MRI imaging. Many modern scanners use
+                superconducting magnets.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="emoji">〰️</div>
+            <h3>2. Gradient Coils</h3>
+            <p>
+                Produce controlled changes in the magnetic field.
+                These help the scanner identify where signals
+                come from inside the body.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="emoji">📡</div>
+            <h3>3. RF Coils</h3>
+            <p>
+                Radiofrequency coils transmit and receive radio
+                signals used to create MRI images.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="emoji">🛏️</div>
+            <h3>4. Patient Table</h3>
+            <p>
+                Supports the patient and moves them into the
+                scanner under the control of trained staff.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="emoji">💻</div>
+            <h3>5. Computer System</h3>
+            <p>
+                Processes the signals received by the scanner
+                and reconstructs medical images.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="emoji">❄️</div>
+            <h3>6. Cooling System</h3>
+            <p>
+                Some superconducting MRI magnets use cryogenic
+                cooling, commonly involving liquid helium.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="emoji">🏗️</div>
+            <h3>7. Magnet Housing</h3>
+            <p>
+                The outer structure supports and protects
+                the magnet and related equipment.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="emoji">🔩</div>
+            <h3>8. Nuts and Bolts</h3>
+            <p>
+                Specialised fasteners are used in appropriate
+                structural assemblies. Their materials and
+                specifications must be engineered for MRI
+                compatibility and safety.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="emoji">🛡️</div>
+            <h3>9. Magnetic Shielding</h3>
+            <p>
+                The scanner room is designed to control
+                electromagnetic interference and manage the
+                magnetic field environment.
+            </p>
+        </div>
+
     </div>
 </section>
 
-<section id="games">
-    <h2 class="heading">🔢 NUMBER GUESSING GAME</h2>
+<section id="working">
+    <h2 class="section-title">How Does an MRI Machine Work?</h2>
 
-    <div class="panel">
-        <p>I'm thinking of a number between 1 and 20.</p>
-        <p>Can you guess it?</p>
+    <div class="steps">
 
-        <input type="number" id="guessInput"
-               min="1" max="20" placeholder="Your guess">
+        <div class="step">
+            <h3>Step 1: Magnetic Field</h3>
+            <p>
+                The main magnet creates a strong magnetic field
+                that influences hydrogen nuclei in the body.
+            </p>
+        </div>
 
-        <br>
+        <div class="step">
+            <h3>Step 2: Radiofrequency Signals</h3>
+            <p>
+                Radiofrequency pulses interact with the hydrogen
+                nuclei and change their magnetic orientation.
+            </p>
+        </div>
 
-        <button class="action" onclick="checkGuess()">
-            Check Number
-        </button>
+        <div class="step">
+            <h3>Step 3: Signal Reception</h3>
+            <p>
+                As the nuclei return towards equilibrium,
+                they produce signals detected by RF coils.
+            </p>
+        </div>
 
-        <button class="action" onclick="newNumber()">
-            Restart Game ↻
-        </button>
+        <div class="step">
+            <h3>Step 4: Image Processing</h3>
+            <p>
+                The computer processes the collected signals
+                using mathematical techniques.
+            </p>
+        </div>
 
-        <p id="guessStatus">Make your first guess!</p>
-        <p id="attempts">Attempts: 0</p>
+        <div class="step">
+            <h3>Step 5: Medical Images</h3>
+            <p>
+                The computer reconstructs images that qualified
+                medical professionals can examine.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<section class="dark" id="manufacturing">
+    <h2 class="section-title">How Are MRI Machines Manufactured?</h2>
+
+    <div class="intro">
+        <p>
+            MRI machines are complex medical devices made by
+            specialised engineering and medical technology
+            companies. Their manufacture requires several
+            engineering disciplines.
+        </p>
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>1. Engineering Design</h3>
+            <p>
+                Engineers design the magnet, electronics,
+                mechanical structure and imaging systems.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>2. Magnet Production</h3>
+            <p>
+                Specialised manufacturers produce and test
+                the magnet system and its components.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>3. Mechanical Components</h3>
+            <p>
+                The frame, housing, patient table and other
+                structures are manufactured using controlled
+                industrial processes.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>4. Electronic Systems</h3>
+            <p>
+                Electronic components, gradient systems,
+                RF systems and computer controls are developed.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>5. Assembly</h3>
+            <p>
+                Qualified technicians assemble the machine
+                following the manufacturer's approved procedures.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>6. Testing</h3>
+            <p>
+                Engineers conduct electrical, magnetic,
+                mechanical and image-quality testing before
+                clinical installation.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="warning">
+        <strong>Engineering safety:</strong>
+        MRI magnets, cryogenic systems and high-power electronics
+        require specialised facilities and trained professionals.
+        This overview is educational, not a DIY manufacturing guide.
+    </div>
+</section>
+
+<section id="hospital">
+    <h2 class="section-title">How Is MRI Used in Hospitals?</h2>
+
+    <div class="steps">
+
+        <div class="step">
+            <h3>1. Medical Assessment</h3>
+            <p>
+                A healthcare professional determines whether
+                an MRI examination is appropriate.
+            </p>
+        </div>
+
+        <div class="step">
+            <h3>2. Safety Screening</h3>
+            <p>
+                Staff ask about implants, medical devices,
+                metal objects and other relevant safety concerns.
+            </p>
+        </div>
+
+        <div class="step">
+            <h3>3. Patient Preparation</h3>
+            <p>
+                The patient follows staff instructions and
+                removes objects that are not permitted
+                in the MRI environment.
+            </p>
+        </div>
+
+        <div class="step">
+            <h3>4. MRI Examination</h3>
+            <p>
+                Trained staff operate the scanner and monitor
+                the patient during the examination.
+            </p>
+        </div>
+
+        <div class="step">
+            <h3>5. Image Review</h3>
+            <p>
+                A qualified radiologist interprets the images
+                and prepares a medical report.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<section class="dark" id="safety">
+    <h2 class="section-title">MRI Safety</h2>
+
+    <div class="intro">
+        <p>
+            MRI safety is extremely important because the
+            magnetic field can attract certain metal objects
+            with great force.
+        </p>
+    </div>
+
+    <div class="cards">
+        <div class="card">
+            <h3>Strong Magnetic Field</h3>
+            <p>
+                Some metal objects can become dangerous
+                projectiles near an MRI scanner.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Medical Implants</h3>
+            <p>
+                Patients must tell staff about implants,
+                pacemakers and medical devices. Compatibility
+                must be checked.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Hearing Protection</h3>
+            <p>
+                MRI scanners can be loud. Appropriate hearing
+                protection is provided to patients.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Trained Professionals</h3>
+            <p>
+                Only authorised and trained professionals
+                should operate or service MRI equipment.
+            </p>
+        </div>
+    </div>
+
+    <div class="warning">
+        Never enter an MRI scanner room with an object unless
+        authorised MRI staff have confirmed it is safe.
+    </div>
+</section>
+
+<section id="advantages">
+    <h2 class="section-title">Advantages and Disadvantages</h2>
+
+    <div class="cards">
+        <div class="card">
+            <h3>Advantages</h3>
+            <ul>
+                <li>Detailed soft-tissue images</li>
+                <li>No ionising radiation</li>
+                <li>Useful for brain and spine imaging</li>
+                <li>Can examine joints and organs</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>Disadvantages</h3>
+            <ul>
+                <li>Can be expensive</li>
+                <li>Some examinations take time</li>
+                <li>Can be noisy</li>
+                <li>Not suitable for every patient</li>
+                <li>Requires specialist staff</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="dark">
+    <h2 class="section-title">Interesting MRI Facts</h2>
+
+    <div class="cards">
+        <div class="card">
+            <h3>Magnet Strength</h3>
+            <p>
+                Many hospital MRI scanners operate at 1.5 Tesla
+                or 3 Tesla.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Hydrogen Atoms</h3>
+            <p>
+                MRI commonly detects signals from hydrogen
+                nuclei found throughout the human body.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Different Images</h3>
+            <p>
+                Different MRI sequences can highlight different
+                tissue characteristics.
+            </p>
+        </div>
     </div>
 </section>
 
 <section id="quiz">
-    <h2 class="heading">🧠 KNOWLEDGE QUIZ</h2>
+    <h2 class="section-title">Test Your MRI Knowledge</h2>
 
-    <div class="panel">
+    <div class="quiz">
+        <h3 id="question">Question 1: What does MRI stand for?</h3>
 
-        <div class="quiz-question">
-            <h3>1. Which planet is known as the Red Planet?</h3>
-            <label><input type="radio" name="q1" value="0"> Earth</label>
-            <label><input type="radio" name="q1" value="1"> Mars</label>
-            <label><input type="radio" name="q1" value="0"> Venus</label>
-        </div>
+        <button onclick="answer(0)">A. Medical Radiation Instrument</button>
+        <button onclick="answer(1)">B. Magnetic Resonance Imaging</button>
+        <button onclick="answer(2)">C. Machine Radio Inspection</button>
 
-        <div class="quiz-question">
-            <h3>2. What does HTML help us create?</h3>
-            <label><input type="radio" name="q2" value="1"> Web pages</label>
-            <label><input type="radio" name="q2" value="0"> Cars</label>
-            <label><input type="radio" name="q2" value="0"> Food</label>
-        </div>
-
-        <div class="quiz-question">
-            <h3>3. How many sides does a triangle have?</h3>
-            <label><input type="radio" name="q3" value="0"> Four</label>
-            <label><input type="radio" name="q3" value="0"> Five</label>
-            <label><input type="radio" name="q3" value="1"> Three</label>
-        </div>
-
-        <button class="action" onclick="checkQuiz()">
-            Submit My Answers
-        </button>
-
-        <p id="quizResult">Good luck! 🎯</p>
-    </div>
-</section>
-
-<section>
-    <h2 class="heading">🎮 TIC-TAC-TOE</h2>
-
-    <div class="panel">
-        <p>Player X vs Player O</p>
-
-        <div class="board">
-            <button class="cell" onclick="play(0)"></button>
-            <button class="cell" onclick="play(1)"></button>
-            <button class="cell" onclick="play(2)"></button>
-            <button class="cell" onclick="play(3)"></button>
-            <button class="cell" onclick="play(4)"></button>
-            <button class="cell" onclick="play(5)"></button>
-            <button class="cell" onclick="play(6)"></button>
-            <button class="cell" onclick="play(7)"></button>
-            <button class="cell" onclick="play(8)"></button>
-        </div>
-
-        <p id="status">Player X's turn</p>
-
-        <button class="action" onclick="resetGame()">
-            New Game ↻
-        </button>
-    </div>
-</section>
-
-<section>
-    <h2 class="heading">ABOUT THE CREATOR 👋</h2>
-    <div class="cards">
-        <div class="card">
-            <h3>💻 My Goal</h3>
-            <p>Become a great programmer.</p>
-        </div>
-
-        <div class="card">
-            <h3>🌍 My Interests</h3>
-            <p>Technology, languages and gaming.</p>
-        </div>
-
-        <div class="card">
-            <h3>🚀 My Dream</h3>
-            <p>Build amazing things.</p>
-        </div>
+        <p id="result"></p>
+        <p id="score">Score: 0</p>
+        <button onclick="nextQuestion()">Next Question →</button>
     </div>
 </section>
 
 <footer>
-    <h3>Made with ❤️ by Farhan</h3>
-    <p>Dream Big. Learn More. Build Your Future.</p>
-    © 2026 Farhan's World
+    <h2>MRI WORLD</h2>
+    <p>Explore Medical Science. Understand Engineering.</p>
+    <p>Educational website | 2026</p>
+    <p>Not a substitute for professional medical advice.</p>
 </footer>
 
 <script>
-
-// LIVE CLOCK
-function updateClock() {
-    const now = new Date();
-
-    document.getElementById("time").textContent =
-        now.toLocaleTimeString();
-
-    document.getElementById("date").textContent =
-        now.toLocaleDateString(undefined, {
-            weekday: "long",
-            year: "numeric",
-            month: "long",
-            day: "numeric"
-        });
-}
-
-updateClock();
-setInterval(updateClock, 1000);
-
-
-// DARK AND LIGHT THEME
-function toggleTheme() {
-    document.body.classList.toggle("light");
-}
-
-
-// MOTIVATION GENERATOR
-const quotes = [
-    "Believe in yourself. You can do amazing things!",
-    "Every expert was once a beginner.",
-    "Never stop learning new things.",
-    "Small steps lead to big achievements.",
-    "Your future starts with what you learn today.",
-    "Make today a little better than yesterday."
+const questions = [
+    {
+        q: "What does MRI stand for?",
+        a: ["Medical Radiation Instrument",
+            "Magnetic Resonance Imaging",
+            "Machine Radio Inspection"],
+        correct: 1
+    },
+    {
+        q: "Which part produces the main magnetic field?",
+        a: ["Patient table", "Main magnet", "Computer screen"],
+        correct: 1
+    },
+    {
+        q: "What do RF coils do?",
+        a: ["Transmit and receive radio signals",
+            "Move the patient",
+            "Cool the room"],
+        correct: 0
+    },
+    {
+        q: "Does MRI use ionising radiation?",
+        a: ["Yes", "No", "Always"],
+        correct: 1
+    },
+    {
+        q: "Who interprets MRI images?",
+        a: ["A qualified radiologist",
+            "A mechanic",
+            "A computer shop worker"],
+        correct: 0
+    }
 ];
 
-function newQuote() {
-    const random = Math.floor(Math.random() * quotes.length);
-    document.getElementById("quote").textContent = quotes[random];
+let current = 0;
+let score = 0;
+let answered = false;
+
+function showQuestion() {
+    document.getElementById("question").innerText =
+        "Question " + (current + 1) + ": " + questions[current].q;
+
+    const buttons = document.querySelectorAll(".quiz button");
+    questions[current].a.forEach((choice, i) => {
+        buttons[i].innerText = String.fromCharCode(65 + i) + ". " + choice;
+        buttons[i].disabled = false;
+    });
+
+    document.getElementById("result").innerText = "";
+    answered = false;
 }
 
+function answer(choice) {
+    if (answered) return;
 
-// NUMBER GUESSING GAME
-let secretNumber = Math.floor(Math.random() * 20) + 1;
-let tries = 0;
-let guessFinished = false;
+    answered = true;
 
-function checkGuess() {
-    const input = document.getElementById("guessInput");
-    const guess = Number(input.value);
-
-    if (guessFinished) {
-        document.getElementById("guessStatus").textContent =
-            "Start a new game first!";
-        return;
-    }
-
-    if (!input.value || guess < 1 || guess > 20 ||
-        !Number.isInteger(guess)) {
-        document.getElementById("guessStatus").textContent =
-            "Enter a whole number from 1 to 20!";
-        return;
-    }
-
-    tries++;
-
-    if (guess === secretNumber) {
-        document.getElementById("guessStatus").textContent =
-            "🎉 CORRECT! You found the number!";
-        guessFinished = true;
-    } else if (guess < secretNumber) {
-        document.getElementById("guessStatus").textContent =
-            "Too low! Try a bigger number.";
+    if (choice === questions[current].correct) {
+        score++;
+        document.getElementById("result").innerText = "Correct! Well done!";
     } else {
-        document.getElementById("guessStatus").textContent =
-            "Too high! Try a smaller number.";
+        document.getElementById("result").innerText =
+            "Not quite! The correct answer is: " +
+            questions[current].a[questions[current].correct];
     }
 
-    document.getElementById("attempts").textContent =
-        "Attempts: " + tries;
+    document.getElementById("score").innerText = "Score: " + score;
+
+    const buttons = document.querySelectorAll(".quiz button");
+    buttons[0].disabled = true;
+    buttons[1].disabled = true;
+    buttons[2].disabled = true;
 }
 
-function newNumber() {
-    secretNumber = Math.floor(Math.random() * 20) + 1;
-    tries = 0;
-    guessFinished = false;
+function nextQuestion() {
+    if (current < questions.length - 1) {
+        current++;
+        showQuestion();
+    } else {
+        document.getElementById("question").innerText =
+            "Quiz completed! Your final score: " + score + "/5";
 
-    document.getElementById("guessInput").value = "";
-    document.getElementById("guessStatus").textContent =
-        "New number chosen. Let's play!";
-    document.getElementById("attempts").textContent =
-        "Attempts: 0";
-}
+        document.getElementById("result").innerText =
+            "Great work! You have finished the MRI quiz.";
 
-
-// KNOWLEDGE QUIZ
-function checkQuiz() {
-    let score = 0;
-    let answered = 0;
-
-    for (let i = 1; i <= 3; i++) {
-        const answer = document.querySelector(
-            'input[name="q' + i + '"]:checked'
-        );
-
-        if (answer) {
-            answered++;
-            score += Number(answer.value);
-        }
+        const buttons = document.querySelectorAll(".quiz button");
+        buttons[0].style.display = "none";
+        buttons[1].style.display = "none";
+        buttons[2].style.display = "none";
     }
-
-    const result = document.getElementById("quizResult");
-
-    if (answered < 3) {
-        result.textContent = "Please answer all 3 questions!";
-        return;
-    }
-
-    result.textContent =
-        "You scored " + score + " out of 3! " +
-        (score === 3 ? "Perfect score! 🏆" : "Great effort! Keep learning!");
 }
-
-
-// TIC-TAC-TOE
-let currentPlayer = "X";
-let board = ["","","","","","","","",""];
-let gameActive = true;
-
-const cells = document.querySelectorAll(".cell");
-
-const winningPositions = [
-    [0,1,2],
-    [3,4,5],
-    [6,7,8],
-    [0,3,6],
-    [1,4,7],
-    [2,5,8],
-    [0,4,8],
-    [2,4,6]
-];
-
-function play(position) {
-    if (!gameActive || board[position] !== "") return;
-
-    board[position] = currentPlayer;
-    cells[position].textContent = currentPlayer;
-
-    for (let combo of winningPositions) {
-        if (combo.every(i => board[i] === currentPlayer)) {
-            document.getElementById("status").textContent =
-                "🏆 Player " + currentPlayer + " WINS!";
-            gameActive = false;
-            return;
-        }
-    }
-
-    if (board.every(cell => cell !== "")) {
-        document.getElementById("status").textContent =
-            "It's a draw! 🤝";
-        gameActive = false;
-        return;
-    }
-
-    currentPlayer = currentPlayer === "X" ? "O" : "X";
-
-    document.getElementById("status").textContent =
-        "Player " + currentPlayer + "'s turn";
-}
-
-function resetGame() {
-    board = ["","","","","","","","",""];
-    currentPlayer = "X";
-    gameActive = true;
-
-    cells.forEach(cell => cell.textContent = "");
-
-    document.getElementById("status").textContent =
-        "Player X's turn";
-}
-
 </script>
 
 </body>
